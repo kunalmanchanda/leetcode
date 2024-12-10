@@ -5,7 +5,7 @@
  * @return {number}
  */
 var maxCount = function(banned, n, maxSum) {
-    let set = new Set();
+        let set = new Set();
 
     banned.forEach(ele => set.add(ele));
 
