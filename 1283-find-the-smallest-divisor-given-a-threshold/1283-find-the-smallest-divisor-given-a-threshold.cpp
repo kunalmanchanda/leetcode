@@ -1,10 +1,9 @@
 class Solution {
 public:
     int smallestDivisor(vector<int>& arr, int threshold) {
-        int low = INT_MAX, high = INT_MIN, n = arr.size();
+        int low = 1, high = INT_MIN, n = arr.size();
 
         for(int i = 0; i < n; i++) {
-            low = min(low, arr[i]);
             high = max(high, arr[i]);
         }
 
