@@ -10,40 +10,40 @@
  * };
  */
 class Solution {
-    int height(TreeNode* root) {
-        if(root == NULL) {
-            return 0;
-        }
-        return 1 + max(height(root->left) , height(root->right));
-    }
 public:
     vector<int> largestValues(TreeNode* root) {
-        int h = height(root);
-        if(h == 0) {
+        if(!root) {
             vector<int> ans;
             return ans;
         }
 
-        vector<int> res(h, INT_MIN);
+        vector<int> res;
 
-        queue<pair<TreeNode*, int>> q;
-        q.push({root, 0});
+        queue<TreeNode*> q;
+        q.push(root);
+
+        int level = 0;
 
         while(!q.empty()) {
-            pair <TreeNode*, int> p = q.front();
-            q.pop();
-            TreeNode* node = p.first;
-            int depth = p.second;
+            int size = q.size();
+            int maxi = INT_MIN;
 
-            res[depth] = max(res[depth], node->val);
+            for(int i = 0; i < size; i++) {
+                TreeNode* node = q.front();
+                q.pop();
 
-            if(node->left) {
-                q.push({node->left, depth + 1});
+                maxi = max(maxi, node->val);
+
+                if(node->left) {
+                    q.push(node->left);
+                }
+
+                if(node->right) {
+                    q.push(node->right);
+                }
             }
-
-            if(node->right) {
-                q.push({node->right, depth + 1});
-            }
+            res.push_back(maxi);
+            level++;
         }
 
         return res;
