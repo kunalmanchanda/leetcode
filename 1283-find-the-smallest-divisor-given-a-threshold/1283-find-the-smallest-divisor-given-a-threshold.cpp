@@ -1,18 +1,14 @@
 class Solution {
 public:
     int smallestDivisor(vector<int>& arr, int threshold) {
-        int low = 1, high = INT_MIN, n = arr.size();
-
-        for(int i = 0; i < n; i++) {
-            high = max(high, arr[i]);
-        }
+        int low = 1, high = *max_element(arr.begin() , arr.end()), n = arr.size();
 
         while(low <= high) {
             int mid = (low + high)/2;
             int total = 0;
 
             for(int i = 0; i < n; i++) {
-                total += ceil((double)arr[i]/mid);
+                total += (arr[i]+mid-1)/mid;;
             }
 
             if(total <= threshold) {
