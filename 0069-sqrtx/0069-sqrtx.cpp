@@ -1,31 +1,19 @@
 class Solution {
 public:
-    int mySqrt(int x) 
-    {
-        int start = 0;
-        int end = x;
-        int res;
+    int mySqrt(int x) {
+        int low = 0;
+        int high = x;
 
-        while(start <= end)
-        {
-            long long int mid = start + (end - start)/2;
+        while(low <= high) {
+            long long int mid = (low + high)/2;
 
-            if(mid*mid < x)
-            {
-                res = mid;
-                start = mid + 1;
-            }
-            else if(mid*mid > x)
-            {
-                end = mid - 1;
-            }
-            else
-            {
-                res = mid;
-                break;
+            if (mid * mid > x) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
             }
         }
 
-        return res;
+        return high;
     }
 };
