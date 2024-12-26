@@ -4,10 +4,6 @@ public:
         int track = 0;
         int n = arr.size();
 
-        if(n <= 1) {
-            return n;
-        }
-
         arr[track++] = arr[0];
 
         for(int i = 0; i < n - 1; i++) {
