@@ -3,15 +3,14 @@
  * @return {boolean}
  */
 var containsDuplicate = function (nums) {
-    let mp = new Map();
+    let set = new Set();
     let res = false;
 
     nums.forEach(ele => {
-        if (mp.has(ele)) {
+        if (set.has(ele)) {
             res = true;
         }
-
-        mp.set(ele, true);
+        set.add(ele);
     })
 
     return res;
