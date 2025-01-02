@@ -1,24 +1,27 @@
 class Solution {
 public:
     bool checkVowel(string str) {
-        vector<char> vowels = {'a', 'e', 'i', 'o', 'u'};
+        unordered_set<char> vowels;
 
+        vowels.insert('a');
+        vowels.insert('e');
+        vowels.insert('i');
+        vowels.insert('o');
+        vowels.insert('u');
+        
         int s = str.length() - 1;
 
         bool start = false, end = false;
 
-        for(int i = 0; i < 5; i++) {
-            if(str[s] == vowels[i]) {
-                end = true;
-            }
-
-            if(str[0] == vowels[i]) {
-                start = true;
-            }
+        if(vowels.find(str[s]) != vowels.end()) {
+            end = true;
+        }
+        
+        if(vowels.find(str[0]) != vowels.end()) {
+            start = true;
         }
 
         return start && end;
-
     }
     vector<int> vowelStrings(vector<string>& words, vector<vector<int>>& queries) {
         int n = words.size();
