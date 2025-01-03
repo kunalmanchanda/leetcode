@@ -9,15 +9,15 @@ var flat = function (arr, n) {
     if (n > 0) {
         arr.forEach((ele, index) => {
             if (Array.isArray(ele)) {
-                res = [...res, ...(flat(ele, n - 1))];
+                res.push(...(flat(ele, n - 1)));
             } else if (index in arr) {
-                res = [...res, ele];
+                res.push(ele);
             }
         })
     } else {
         arr.forEach((ele, idx) => {
             if (idx in arr) {
-                res = [...res, ele];
+                res.push(ele);
             }
         })
     }
