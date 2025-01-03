@@ -1,18 +1,26 @@
+/**
+ * @param {Array} arr
+ * @param {number} depth
+ * @return {Array}
+ */
 var flat = function (arr, n) {
-    if (n == 0) {
-        return arr;
+    let res = [];
+
+    if (n > 0) {
+        arr.forEach((ele, index) => {
+            if (Array.isArray(ele)) {
+                res = [...res, ...(flat(ele, n - 1))];
+            } else if (index in arr) {
+                res = [...res, ele];
+            }
+        })
+    } else {
+        arr.forEach((ele, idx) => {
+            if (idx in arr) {
+                res = [...res, ele];
+            }
+        })
     }
 
-    let answer = [];
-
-    for (let i = 0; i < arr.length; i++) {
-        if (Array.isArray(arr[i])) {
-            answer.push(...flat(arr[i], n - 1));
-        }
-        else {
-            answer.push(arr[i]);
-        }
-    }
-
-    return answer;
+    return res;
 };
