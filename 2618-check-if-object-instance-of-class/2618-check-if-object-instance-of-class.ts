@@ -1,5 +1,5 @@
 function checkIfInstanceOf(obj: any, classFunction: any): boolean {
-    if (obj === null || obj === undefined || typeof classFunction !== 'function') {
+    if (!obj || typeof classFunction !== 'function') {
         return false;
     }
 
@@ -10,10 +10,6 @@ function checkIfInstanceOf(obj: any, classFunction: any): boolean {
             return true;
         }
         currPrototype = Object.getPrototypeOf(currPrototype)
-    }
-
-    if (obj instanceof classFunction) {
-        return true;
     }
 
     return false;
