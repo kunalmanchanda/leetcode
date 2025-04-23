@@ -3,19 +3,16 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
-    const res = [];
+var twoSum = function (nums, target) {
+    const map = {}
+    let res = [-1, -1];
 
-    const map = new Map();
-
-    nums.forEach((ele, idx) => {
-        if(map.has(target - ele)) {
-            res.push(map.get(target - ele))
-            res.push(idx)
+    nums.forEach((ele, index) => {
+        if (map[target - ele] != undefined) {
+            res = [map[target - ele], index];
             return;
         }
-
-        map.set(ele, idx);
+        map[ele] = index;
     })
 
     return res;
