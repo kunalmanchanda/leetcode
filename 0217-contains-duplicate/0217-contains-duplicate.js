@@ -3,15 +3,9 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-    const obj = {};
-    let res = false;
+    const uniqueSet = new Set();
+    
+    nums.forEach(item => uniqueSet.add(item));
 
-    nums.forEach((ele) => {
-        if(obj[ele]) {
-            res = true;
-        }
-        obj[ele] = 1;
-    })
-
-    return res;
+    return nums.length != uniqueSet.size
 };
