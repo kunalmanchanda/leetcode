@@ -2,11 +2,16 @@
  * @param {number[]} nums
  * @return {boolean}
  */
-var containsDuplicate = function (nums) {
-    let n = nums.length;
-    let res = 0;
+var containsDuplicate = function(nums) {
+    const obj = {};
+    let res = false;
 
-    nums.forEach(ele => res += ele)
+    nums.forEach((ele) => {
+        if(obj[ele]) {
+            res = true;
+        }
+        obj[ele] = 1;
+    })
 
-    return n <= 1 ? false : res < Math.ceil(n*(n+1)/2);
+    return res;
 };
