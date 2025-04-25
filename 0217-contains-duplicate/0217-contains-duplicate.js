@@ -3,9 +3,14 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-    const uniqueSet = new Set();
-    
-    nums.forEach(item => uniqueSet.add(item));
+    const map = new Map();
 
-    return nums.length != uniqueSet.size
+    for(const n of nums) {
+        if(map.has(n)) {
+            return true;
+        }
+        map.set(n, true);
+    }
+
+    return false;
 };
