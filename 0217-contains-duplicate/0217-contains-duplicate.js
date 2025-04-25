@@ -3,15 +3,10 @@
  * @return {boolean}
  */
 var containsDuplicate = function (nums) {
-    let set = new Set();
-    let res = false;
+    let n = nums.length;
+    let res = 0;
 
-    nums.forEach(ele => {
-        if (set.has(ele)) {
-            res = true;
-        }
-        set.add(ele);
-    })
+    nums.forEach(ele => res += ele)
 
-    return res;
+    return n <= 1 ? false : res < Math.ceil(n*(n+1)/2);
 };
