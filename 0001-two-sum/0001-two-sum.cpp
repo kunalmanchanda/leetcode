@@ -1,9 +1,9 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        map<int, int> mp;
-        vector<int> res(2, -1);
+        vector<int> res = {-1, -1};
         int n = nums.size();
+        unordered_map<int, int> mp;
 
         for(int i = 0; i < n; i++) {
             if(mp.find(target - nums[i]) != mp.end()) {
@@ -12,7 +12,7 @@ public:
                 break;
             }
 
-            mp.insert({nums[i], i});
+            mp[nums[i]] = i;
         }
 
         return res;
