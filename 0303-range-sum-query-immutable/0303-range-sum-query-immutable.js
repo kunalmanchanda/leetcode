@@ -3,12 +3,11 @@
  */
 var NumArray = function(nums) {
     let n = nums.length;
+    this.prefixSum = new Array(n);
+    this.prefixSum[0] = nums[0];
 
-    this._arr = new Array(n);
-    this._arr[0] = nums[0];
-
-    for(let i = 1; i < nums.length; i++) {
-        this._arr[i] = this._arr[i-1] + nums[i];
+    for(let i = 1; i < n; i++) {
+        this.prefixSum[i] = this.prefixSum[i - 1] + nums[i];
     }
 };
 
@@ -18,11 +17,11 @@ var NumArray = function(nums) {
  * @return {number}
  */
 NumArray.prototype.sumRange = function(left, right) {
-    if(left === 0) {
-        return this._arr[right]; 
-    } else {
-        return this._arr[right] - this._arr[left - 1];
+    if(left == 0) {
+        return this.prefixSum[right]
     }
+
+    return this.prefixSum[right] - this.prefixSum[left - 1];
 };
 
 /** 
